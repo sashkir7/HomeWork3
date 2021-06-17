@@ -8,17 +8,31 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class StudentRegistrationFormPage {
 
-    private void setFirstName(String firstName) { $("#firstName").setValue(firstName); }
-    private void setLastName(String lastName) { $("#lastName").setValue(lastName); }
-    private void setEmail(String email) { $("#userEmail").setValue(email); }
-    private void setSex(Sex sex) { $(byText(sex.getValue())).click(); }
-    private void setPhoneNumber(String phoneNumber) { $("#userNumber").setValue(phoneNumber); }
+    private void setFirstName(String firstName) {
+        $("#firstName").setValue(firstName);
+    }
+
+    private void setLastName(String lastName) {
+        $("#lastName").setValue(lastName);
+    }
+
+    private void setEmail(String email) {
+        $("#userEmail").setValue(email);
+    }
+
+    private void setSex(Sex sex) {
+        $(byText(sex.getValue())).click();
+    }
+
+    private void setPhoneNumber(String phoneNumber) {
+        $("#userNumber").setValue(phoneNumber);
+    }
 
     private void setDateOfBirth(int day, String month, int year) {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOption(String.valueOf(day));
-        $(String.format("[aria-label='Choose Saturday, %s %snd, %s']", month, String.valueOf(day), String.valueOf(year))).click();
+        $(".react-datepicker__year-select").selectOption(String.valueOf(year));
+        $("[aria-label='Choose Saturday, November 22nd, 1997']").click();
     }
 
     private void setSubjects(String[] subjects) {
@@ -31,10 +45,21 @@ public class StudentRegistrationFormPage {
             $(byText(hobby.getValue())).click();
     }
 
-    private void setCurrentAddress(String currentAddress) { $("#currentAddress").setValue(currentAddress); }
-    private void setState(String state) { $("#react-select-3-input").setValue(state).pressEnter(); }
-    private void setCity(String city) { $("#react-select-4-input").setValue(city).pressEnter(); }
-    private void clickSubmit() { $("#submit").click(); }
+    private void setCurrentAddress(String currentAddress) {
+        $("#currentAddress").setValue(currentAddress);
+    }
+
+    private void setState(String state) {
+        $("#react-select-3-input").setValue(state).pressEnter();
+    }
+
+    private void setCity(String city) {
+        $("#react-select-4-input").setValue(city).pressEnter();
+    }
+
+    private void clickSubmit() {
+        $("#submit").click();
+    }
 
     public void fillForm(StudentRegistrationFormViewModel formViewModel) {
         setFirstName(formViewModel.firstName);
